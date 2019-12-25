@@ -16,6 +16,11 @@ const styles = StyleSheet.create ({
    image : {
 		width : 200,
 		height : 200
+   },
+   btn_group : {
+		flexDirection : 'row',
+		justifyContent : 'space-between',
+		alignItems : 'center'
    }
 })
 

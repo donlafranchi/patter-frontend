@@ -10,6 +10,18 @@ class HomeScreen extends React.Component {
 
 	constructor() {
 		super();
+
+		this.handleFilter = () => {
+			// filter action here
+		}
+
+		this.handleMyEvents = () => {
+			// my events action here
+		}
+
+		this.handleAddEvent = () => {
+			// add event action here
+		}
 	}
 
 	componentDidUpdate() {
@@ -37,7 +49,7 @@ class HomeScreen extends React.Component {
 					'image' : 'https://patter.com/img/event3.png'
 				}
 	      ];
-	      
+
 		return (
 			<View>
 	            <ScrollView>
@@ -53,6 +65,23 @@ class HomeScreen extends React.Component {
 	                  ))
 	               }
 	            </ScrollView>
+	            <View style = {styles.btn_group}>
+		            <Button
+						onPress = {this.handleFilter}
+						title = "Filter Events"
+						color = "Green"
+			      	/>
+			      	<Button
+						onPress = {this.handleMyEvents}
+						title = "My Events"
+						color = "Blue"
+			      	/>
+			      	<Button
+						onPress = {this.handleAddEvent}
+						title = "Add Event"
+						color = "Yellow"
+			      	/>
+		      	</View>
 	         </View>
 		)
 	}
