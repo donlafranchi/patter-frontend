@@ -30,7 +30,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.createLog('Main Page Loaded', '');
+		// this.props.createLog('Main Page Loaded', '');
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -39,7 +39,6 @@ class App extends React.Component {
 	render() {
 		return (
 			<Root style={{ flex: 1 }}>
-				<View>Welcome</View>
 				<MainApp ref={nav => {
 					this.navigator = nav;
 				}}

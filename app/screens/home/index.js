@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, ScrollView, Image, 
+import { View, TouchableOpacity, Text, ScrollView, Image, Button, 
 	ActivityIndicator } from 'react-native';
-import { Button } from 'native-base';
+// import { Button } from 'native-base';
 
 import styles from './styles';
 import { g_styles } from '../../../styleConsts';
@@ -29,6 +29,8 @@ class HomeScreen extends React.Component {
 
 	render() {
 
+		var navigate = this.props.navigation.navigate;
+
 		var events = [
 				{
 					'id': '1', 
@@ -55,13 +57,16 @@ class HomeScreen extends React.Component {
 	            <ScrollView>
 	               {
 	                  events.map((event, index) => (
-	                     <View key = {event.id} style = {styles.event}>
-	                     	<Image
-	                     		source = {{ uri: event.image }} 
-	                     		style = {styles.image} />
-	                        <Text>{event.name}</Text>
-	                        <Text>{event.desc}</Text>
-	                     </View>
+	                     <TouchableOpacity key = {event.id} style = {styles.event} 
+	                     	onPress={() => { navigate('detail');}}>
+	                     	<View>
+		                     	<Image
+		                     		source = {{ uri: event.image }} 
+		                     		style = {styles.image} />
+		                        <Text>{event.name}</Text>
+		                        <Text>{event.desc}</Text>
+	                        </View>
+	                     </TouchableOpacity>
 	                  ))
 	               }
 	            </ScrollView>

@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, ScrollView, Image, 
+import { View, TouchableOpacity, Text, ScrollView, Image, Button, 
 	ActivityIndicator } from 'react-native';
-import { Button } from 'native-base';
+// import { Button } from 'native-base';
 
 import styles from './styles';
 import { g_styles } from '../../../styleConsts';
@@ -21,15 +21,23 @@ class Detail extends React.Component {
 
 	render() {
 
+		var navigate = this.props.navigation.navigate;
+
 		var event = {
 			'name' : 'event1',
 			'desc' : 'event1 info',
-			'image' : 'https://patter.com/img/event1.png'
+			'image' : 'https://patter.com/img/event1.png',
+			'vendors' : [{
+				'id' : '1',
+				'fullname' : 'David Green',
+				'desc' : 'user info',
+				'image' : 'https://patter.com/img/event1.png'
+			}]
 		}
 
 		return (
 			<View>
-				<View>
+				<View style = { styles.eventDetail } >
 	                <Image
 	             		source = {{ uri: event.image }} 
 	             		style = {styles.image} />
@@ -39,17 +47,20 @@ class Detail extends React.Component {
                 <ScrollView>
                 	{
 	                  event.vendors.map((vendor, index) => (
-	                     <View key = {vendor.id} style = {styles.vendor}>
-	                        <Text>{vendor.name}</Text>
-	                        <Text>{vendor.bio}</Text>
-	                     </View>
+	                  	<TouchableOpacity key = {vendor.id} style = {styles.vendor}
+		                     	onPress={() => { navigate('profile');}}>
+							<View>
+								<Text>{vendor.fullname}</Text>
+								<Text>{vendor.desc}</Text>
+							</View>
+                     	</TouchableOpacity>
 	                  ))
 	               }
 	            </ScrollView>
 	            <Button
 		         onPress = {this.handleRemindMe}
 		         title = "Remind Me of Event"
-		         color = "Green"
+		         color = "#f194ff"
 		      	/>
 	         </View>
 		)

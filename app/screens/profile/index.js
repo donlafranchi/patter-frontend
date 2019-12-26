@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, ScrollView, Image, 
+import { View, TouchableOpacity, Text, ScrollView, Image, Button,
 	ActivityIndicator } from 'react-native';
-import { Button } from 'native-base';
+// import { Button } from 'native-base';
 
 import styles from './styles';
 import { g_styles } from '../../../styleConsts';
@@ -22,6 +22,7 @@ class Profile extends React.Component {
 	render() {
 
 		var profile = {
+			'id' : '1',
 			'fullname' : 'David Green',
 			'desc' : 'user info',
 			'image' : 'https://patter.com/img/event1.png',
@@ -62,7 +63,7 @@ class Profile extends React.Component {
 	            <Button
 					onPress = {this.handleFollow}
 					title = "Follow Person"
-					color = "Green"
+					color = "#f194ff"
 		      	/>
 	         </View>
 		)

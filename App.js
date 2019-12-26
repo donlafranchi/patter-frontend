@@ -15,23 +15,23 @@ export default class App extends React.Component {
   }
 
   async componentWillMount() {
-    await Font.loadAsync({
-      Roboto: require("native-base/Fonts/Roboto.ttf"),
-      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-      Ionicons: require('native-base/Fonts/Ionicons.ttf'),
-      FontAwesome: require('native-base/Fonts/FontAwesome.ttf')
-    });
-    this.setState({
-      ready: true
-    })
-    setTimeout(() => {
-      // Expo.SplashScreen.hide();
-    }, 2000);
+    // await Font.loadAsync({
+    //   Roboto: require("native-base/Fonts/Roboto.ttf"),
+    //   Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+    //   Ionicons: require('native-base/Fonts/Ionicons.ttf'),
+    //   FontAwesome: require('native-base/Fonts/FontAwesome.ttf')
+    // });
+    // this.setState({
+    //   ready: true
+    // })
+    // setTimeout(() => {
+    //   // Expo.SplashScreen.hide();
+    // }, 2000);
   }
 
   render() {
-    if(!this.state.ready)
-      return null;
+    // if(!this.state.ready)
+      // return null;
     return (
       <MainApp />
     );
