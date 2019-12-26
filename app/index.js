@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
-import { createStackNavigator, createAppContainer,
-	NavigationActions } from 'react-navigation';
+import { createAppContainer, NavigationActions } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import { Root } from "native-base";
 import * as Expo from 'expo';
 
@@ -15,7 +15,7 @@ const mainNavigator = createStackNavigator({
 	profile: Profile,
 }, {
 	headerMode: 'none',
-	initialRouteNames: 'home',
+	initialRouteName: 'home',
 	defaultNavigationOptions: {
 		gesturesEnabled: false,
 	}
@@ -39,6 +39,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<Root style={{ flex: 1 }}>
+				<View>Welcome</View>
 				<MainApp ref={nav => {
 					this.navigator = nav;
 				}}
