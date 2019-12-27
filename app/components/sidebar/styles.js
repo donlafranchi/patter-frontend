@@ -4,7 +4,7 @@ import { primary_color } from '../../../styleConsts';
 
 const styles = StyleSheet.create({
 	sidebar_content: {
-
+		width : 100
 	},
 	listitem: {
 		borderBottomWidth: 0

@@ -36,25 +36,25 @@ class HomeScreen extends React.Component {
 					'id': '1', 
 					'name': 'event1', 
 					'desc': 'event1 info', 
-					'image' : 'https://patter.com/img/event1.png'
+					'image' : 'https://blog.hubspot.com/hubfs/Sales_Blog/best-real-estate-websites.jpg'
 				},
 				{
 					'id': '2', 
 					'name': 'event2', 
 					'desc': 'event2 info', 
-					'image' : 'https://patter.com/img/event2.png'
+					'image' : 'https://www.incimages.com/uploaded_files/image/970x450/getty_827615404_341774.jpg'
 				},
 				{	
 					'id': '3', 
 					'name': 'event3', 
 					'desc': 'event3 info', 
-					'image' : 'https://patter.com/img/event3.png'
+					'image' : 'https://informa-mea-res.cloudinary.com/image/upload/training/course-images/certificate-in-real-estate-process-for-development-investment-repdi-course.jpg'
 				}
 	      ];
 
 		return (
 			<View>
-	            <ScrollView>
+	            <ScrollView style={ styles.event_list }>
 	               {
 	                  events.map((event, index) => (
 	                     <TouchableOpacity key = {event.id} style = {styles.event} 
@@ -63,8 +63,8 @@ class HomeScreen extends React.Component {
 		                     	<Image
 		                     		source = {{ uri: event.image }} 
 		                     		style = {styles.image} />
-		                        <Text>{event.name}</Text>
-		                        <Text>{event.desc}</Text>
+		                        <Text style={ styles.event_name }>{event.name}</Text>
+		                        <Text style={ styles.event_desc }>{event.desc}</Text>
 	                        </View>
 	                     </TouchableOpacity>
 	                  ))

@@ -37,7 +37,7 @@ class SideBar extends React.Component {
 		];
 
 		return (
-			<Container>
+			<Container style={styles.sideBar_content}>
 				<LinearGradient colors={[primary_color, dark_primary_color]} style={{ height: '100%' }} >
 					<TopBar menuPress={this.props.menuPress} />
 					<Content style={{ height: '100%' }}>
