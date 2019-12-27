@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { Container, Header, Content, List, ListItem, Text,
 	Left, Icon } from 'native-base';
-import { LinearGradient } from 'expo';
+import { LinearGradient } from 'expo-linear-gradient';
 import { connect } from "react-redux";
 
 // import appActions from '../../store/app/action';
@@ -38,7 +38,7 @@ class SideBar extends React.Component {
 
 		return (
 			<Container>
-				<View colors={[primary_color, dark_primary_color]} style={{ height: '100%' }} >
+				<LinearGradient colors={[primary_color, dark_primary_color]} style={{ height: '100%' }} >
 					<TopBar menuPress={this.props.menuPress} />
 					<Content style={{ height: '100%' }}>
 						<List>
@@ -55,7 +55,7 @@ class SideBar extends React.Component {
 														navigate(menu_item.key);
 													this.props.menuPress();
 												}} >
-											<Text style={styles.listitem_wrapper} >
+											<Text style={styles.listitem_text} >
 												{menu_item.text}
 											</Text>
 										</TouchableOpacity>
@@ -64,7 +64,7 @@ class SideBar extends React.Component {
 							})}
 						</List>
 					</Content>
-				</View>
+				</LinearGradient>
 			</Container>
 		);
 	}
