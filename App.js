@@ -1,7 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Drawer } from 'native-base';
+import { Provider } from 'react-redux';
 import * as Expo from 'expo';
+
+import SideBar from './app/components/sidebar';
+import TopBar from './app/components/topbar';
 
 import MainApp from './app/index';
 
@@ -33,7 +37,22 @@ export default class App extends React.Component {
     // if(!this.state.ready)
       // return null;
     return (
-      <MainApp />
+      <Drawer
+        styles={{mainOverlay: { elevation: 0 }}}
+        ref={(ref) => { this.drawer = ref; }}
+        content={<SideBar menuPress={() => {
+          this.drawer._root.close();
+        }} navigate={(route) => {
+          this.setState({ route })
+        }} style={{ zIndex: 100 }} />}
+        onClose={() => {
+          this.drawer._root.close();
+        }} >
+        <TopBar menuPress={() => {
+          this.drawer._root.open();
+        }} />
+        <MainApp />
+      </Drawer>
     );
   }
 }
