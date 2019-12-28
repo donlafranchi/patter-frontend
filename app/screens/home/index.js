@@ -74,17 +74,17 @@ class HomeScreen extends React.Component {
 		            <Button
 						onPress = {this.handleFilter}
 						title = "Filter Events"
-						color = "Green"
+						color = "#ffffff"
 			      	/>
 			      	<Button
 						onPress = {this.handleMyEvents}
 						title = "My Events"
-						color = "Blue"
+						color = "#ffffff"
 			      	/>
 			      	<Button
 						onPress = {this.handleAddEvent}
 						title = "Add Event"
-						color = "Yellow"
+						color = "#ffffff"
 			      	/>
 		      	</View>
 	         </View>
