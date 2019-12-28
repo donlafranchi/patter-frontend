@@ -34,21 +34,21 @@ class HomeScreen extends React.Component {
 		var events = [
 				{
 					'id': '1', 
-					'name': 'event1', 
-					'desc': 'event1 info', 
-					'image' : 'https://blog.hubspot.com/hubfs/Sales_Blog/best-real-estate-websites.jpg'
+					'name': 'Quebec City Walking Tour', 
+					'desc': 'Explore Niagara Falls your way on a stress-free day trip from Toronto, which also includes wine tasting at a local winery. Explore the falls at your own pace during roughly three hours of free time', 
+					'image' : 'https://media-cdn.tripadvisor.com/media/photo-s/1a/65/1e/80/caption.jpg'
 				},
 				{
 					'id': '2', 
-					'name': 'event2', 
-					'desc': 'event2 info', 
-					'image' : 'https://www.incimages.com/uploaded_files/image/970x450/getty_827615404_341774.jpg'
+					'name': 'Niagara Falls, Canada: Voyage to the Falls Boat Tour in Canada', 
+					'desc': 'Get up close to Niagara Falls on this boat tour that cruises from the Canadian side of the border. Feel the power of the massive waterfalls as you motor past American Falls, Bridal Veil Falls', 
+					'image' : 'https://media-cdn.tripadvisor.com/media/photo-s/1a/54/3d/3e/caption.jpg'
 				},
 				{	
 					'id': '3', 
-					'name': 'event3', 
-					'desc': 'event3 info', 
-					'image' : 'https://informa-mea-res.cloudinary.com/image/upload/training/course-images/certificate-in-real-estate-process-for-development-investment-repdi-course.jpg'
+					'name': 'Vancouver City Tour Including Capilano Suspension Bridge', 
+					'desc': 'In addition to top Vancouver sights such as Stanley Park and Robson Street, this Vancouver sightseeing tour includes a trip to the Capilano Suspension Bridge', 
+					'image' : 'https://media-cdn.tripadvisor.com/media/photo-s/1a/57/a1/91/caption.jpg'
 				}
 	      ];
 
@@ -58,7 +58,7 @@ class HomeScreen extends React.Component {
 	               {
 	                  events.map((event, index) => (
 	                     <TouchableOpacity key = {event.id} style = {styles.event} 
-	                     	onPress={() => { navigate('detail');}}>
+	                     	onPress={() => { navigate('detail');}} >
 	                     	<View>
 		                     	<Image
 		                     		source = {{ uri: event.image }} 

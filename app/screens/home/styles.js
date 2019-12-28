@@ -20,13 +20,13 @@ const styles = StyleSheet.create ({
    		color: '#2a4944',
 		alignSelf: 'flex-start',
 		fontSize : 16,
-		padding : 20
+		padding : 15
    	},
    	event_desc : {
    		color: '#2a4944',
 		alignSelf: 'flex-start',
 		fontSize : 14,
-		padding : 20
+		padding : 15
    	},
    	image : {
 		width : 366,

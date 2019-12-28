@@ -1,7 +1,8 @@
 import {Platform, Dimensions, StatusBar, StyleSheet} from 'react-native';
 
 
-var primary_color = '#11A0B2';
+// var primary_color = '#11A0B2';
+var primary_color = '#9b59e2';
 var dark_primary_color = '#095059';
 var gray_color = '#F5F5F5';
 

@@ -24,9 +24,10 @@ class Detail extends React.Component {
 		var navigate = this.props.navigation.navigate;
 
 		var event = {
-			'name' : 'event1',
-			'desc' : 'event1 info',
-			'image' : 'https://blog.hubspot.com/hubfs/Sales_Blog/best-real-estate-websites.jpg',
+			'id': '1', 
+			'name': 'Quebec City Walking Tour', 
+			'desc': 'Explore Niagara Falls your way on a stress-free day trip from Toronto, which also includes wine tasting at a local winery. Explore the falls at your own pace during roughly three hours of free time', 
+			'image' : 'https://media-cdn.tripadvisor.com/media/photo-s/1a/65/1e/80/caption.jpg',
 			'vendors' : [
 				{
 					'id' : '1',
@@ -45,21 +46,21 @@ class Detail extends React.Component {
 
 		return (
 			<View>
-                <ScrollView style={ styles.event_detail_container }>
-	                <View style = { styles.eventDetail } >
+                <ScrollView style={ styles.container }>
+	                <View style = { styles.event_detail } >
 		                <Image
 		             		source = {{ uri: event.image }} 
 		             		style = {styles.image} />
-		                <Text style={ styles.event_name }>{event.name}</Text>
-		                <Text style={ styles.event_desc }>{event.desc}</Text>
+		                <Text style={ styles.name }>{event.name}</Text>
+		                <Text style={ styles.desc }>{event.desc}</Text>
 	                </View>
                 	{
 	                  event.vendors.map((vendor, index) => (
-	                  	<TouchableOpacity key = {vendor.id} style = {styles.vendor}
+	                  	<TouchableOpacity key = {vendor.id} style = {styles.item}
 		                     	onPress={() => { navigate('profile');}}>
 							<Image
 			             		source = {{ uri: vendor.image }} 
-			             		style = {styles.vendor_img} />
+			             		style = {styles.item_img} />
 		             		<View>
 								<Text>{vendor.fullname}</Text>
 								<Text>{vendor.desc}</Text>
