@@ -5,14 +5,33 @@ import { View, TouchableOpacity, Text, ScrollView, Image, Button,
 
 import styles from './styles';
 import { g_styles } from '../../../styleConsts';
+import Modal from "react-native-modal";
+import RNPickerSelect from 'react-native-picker-select';
+import DatePicker from 'react-native-datepicker';
+
 
 class HomeScreen extends React.Component {
 
 	constructor() {
 		super();
 
+		this.state = {
+			isModalVisible: false,
+			date: "2019-12-30"
+		}
+
+		this.toggleModal = () => {
+		    this.setState({ isModalVisible: !this.state.isModalVisible });
+	  	};
+
+	    this._onChange = (item) => {
+	        // the full item as defined in the list of items is passed to the onChange handler to give full
+	        // flexibility on what to do... 
+	    }
+
 		this.handleFilter = () => {
 			// filter action here
+
 		}
 
 		this.handleMyEvents = () => {
@@ -30,6 +49,18 @@ class HomeScreen extends React.Component {
 	render() {
 
 		var navigate = this.props.navigation.navigate;
+
+		const items = [
+            { label: 'Sports', value:'sports' },
+            { label: 'Health', value: 'health' },
+            { label: 'Culture', value: 'culture' }
+        ];
+
+        const locations = [
+        	{ label : 'Toronto', value : 'toronto' },
+        	{ label : 'Vancouver', value : 'vancouver' },
+        	{ label : 'Montreal', value : 'montreal' }
+    	];
 
 		var events = [
 				{
@@ -72,12 +103,12 @@ class HomeScreen extends React.Component {
 	            </ScrollView>
 	            <View style = {styles.btn_group}>
 		            <Button
-						onPress = {this.handleFilter}
+						onPress={this.toggleModal}
 						title = "Filter Events"
 						color = "#ffffff"
 			      	/>
 			      	<Button
-						onPress = {this.handleMyEvents}
+						onPress={() => { navigate('profile');}}
 						title = "My Events"
 						color = "#ffffff"
 			      	/>
@@ -87,6 +118,45 @@ class HomeScreen extends React.Component {
 						color = "#ffffff"
 			      	/>
 		      	</View>
+		        <Modal isVisible={this.state.isModalVisible}>
+					<View style = { styles.modal_container } >
+						<Text>Filter Events</Text>
+						<RNPickerSelect
+				            onValueChange={this._onChange}
+				            placeholder={{ label : "Select a category" }}
+				            items={items}
+				        />
+				        <DatePicker
+					        style={{width: 200}}
+					        date={this.state.date}
+					        mode="date"
+					        placeholder="select date"
+					        format="YYYY-MM-DD"
+					        minDate="2016-05-01"
+					        maxDate="2016-06-01"
+					        confirmBtnText="Confirm"
+					        cancelBtnText="Cancel"
+					        customStyles={{
+					          dateIcon: {
+					            position: 'absolute',
+					            left: 0,
+					            top: 4,
+					            marginLeft: 0
+					          },
+					          dateInput: {
+					            marginLeft: 36
+					          }
+					        }}
+					        onDateChange={(date) => {this.setState({date: date})}}
+					      />
+						<RNPickerSelect
+				            onValueChange={this._onChange}
+				            placeholder={{ label : "Select a location" }}
+				            items={locations}
+				        />
+						<Button title="Apply" onPress={this.toggleModal} />
+					</View>
+		        </Modal>
 	         </View>
 		)
 	}

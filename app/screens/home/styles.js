@@ -38,6 +38,13 @@ const styles = StyleSheet.create ({
 		alignItems : 'center',
 		padding : 10,
 		backgroundColor : primary_color
+   	},
+   	modal_container : {
+   		flex : 1,
+   		// flexDirection : 'column',
+   		// justifyContent : 'space-around',
+   		backgroundColor : '#ffffff',
+   		borderRadius : 6
    	}
 })
 
