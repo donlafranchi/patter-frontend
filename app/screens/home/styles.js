@@ -29,7 +29,7 @@ const styles = StyleSheet.create ({
 		padding : 15
    	},
    	image : {
-		width : 366,
+		width : '100%',
 		height : 150
    	},
    	btn_group : {
@@ -40,11 +40,37 @@ const styles = StyleSheet.create ({
 		backgroundColor : primary_color
    	},
    	modal_container : {
+		justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop : 100,
+        marginBottom : 100,
+        marginLeft : 30,
+        marginLeft : 30,
+        height : 200,
    		flex : 1,
-   		// flexDirection : 'column',
-   		// justifyContent : 'space-around',
+   		padding : 20, 
    		backgroundColor : '#ffffff',
    		borderRadius : 6
+   	},
+   	modal_header : {
+   		fontSize : 20,
+   		alignItems : 'center',
+   		padding : 20,
+   		marginBottom : 40,
+   		fontWeight : 'bold'
+   	},
+   	select : {
+   		fontSize : 18,
+   		margin : 20,
+   		alignItems : 'center'
+   	},
+   	dataPicker : {
+   		fontSize : 18,
+   	},
+   	label : {
+   		marginBottom : 10,
+   		marginTop : 20,
+   		fontWeight : '500'
    	}
 })
 

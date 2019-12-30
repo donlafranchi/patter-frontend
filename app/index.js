@@ -8,11 +8,14 @@ import * as Expo from 'expo';
 import HomeScreen from './screens/home';
 import Detail from './screens/detail';
 import Profile from './screens/profile';
+import Editor from './screens/editor';
+
 
 const mainNavigator = createStackNavigator({
 	home: HomeScreen,
 	detail: Detail,
 	profile: Profile,
+	editor: Editor
 }, {
 	headerMode: 'none',
 	initialRouteName: 'home',

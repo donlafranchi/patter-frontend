@@ -113,21 +113,25 @@ class HomeScreen extends React.Component {
 						color = "#ffffff"
 			      	/>
 			      	<Button
-						onPress = {this.handleAddEvent}
+						onPress={() => { navigate('editor');}}
 						title = "Add Event"
 						color = "#ffffff"
 			      	/>
 		      	</View>
-		        <Modal isVisible={this.state.isModalVisible}>
-					<View style = { styles.modal_container } >
-						<Text>Filter Events</Text>
+		        <Modal isVisible={this.state.isModalVisible}
+		        	style = { styles.modal_container }>
+					<View >
+						<Text style={ styles.modal_header }>Filter Events</Text>
+						<Text style={ styles.label }>Category</Text>
 						<RNPickerSelect
 				            onValueChange={this._onChange}
 				            placeholder={{ label : "Select a category" }}
 				            items={items}
+				            style={ styles.select }
 				        />
+				        <Text style={ styles.label }>Date</Text>
 				        <DatePicker
-					        style={{width: 200}}
+					        style={styles.dataPicker}
 					        date={this.state.date}
 					        mode="date"
 					        placeholder="select date"
@@ -149,13 +153,15 @@ class HomeScreen extends React.Component {
 					        }}
 					        onDateChange={(date) => {this.setState({date: date})}}
 					      />
+					    <Text style={ styles.label }>Location</Text>
 						<RNPickerSelect
 				            onValueChange={this._onChange}
 				            placeholder={{ label : "Select a location" }}
 				            items={locations}
+				            style={ styles.select }
 				        />
-						<Button title="Apply" onPress={this.toggleModal} />
 					</View>
+					<Button title="Apply" onPress={this.toggleModal} />
 		        </Modal>
 	         </View>
 		)
