@@ -13,6 +13,8 @@ class Editor extends React.Component {
 
 		this.createEvent = () => {
 			// remind action here
+			var navigate = this.props.navigation.navigate;
+			navigate('home');
 		}
 	}
 
@@ -20,8 +22,6 @@ class Editor extends React.Component {
 	}
 
 	render() {
-
-		var navigate = this.props.navigation.navigate;
 
 		return (
 			<View>

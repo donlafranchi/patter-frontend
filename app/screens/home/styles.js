@@ -70,6 +70,7 @@ const styles = StyleSheet.create ({
    	label : {
    		marginBottom : 10,
    		marginTop : 20,
+      fontSize : 18,
    		fontWeight : '500'
    	}
 })
