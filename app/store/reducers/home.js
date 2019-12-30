@@ -1,11 +1,20 @@
-let count= 0;
+import {
+	HOME_PAGE_LOADED,
+	HOME_PAGE_UNLOADED
+} from '../actionTypes.js';
 
-export default function(state=count, action){
+export default function(state={}, action){
   switch (action.type) {
-    case "Increment": count++;
-      break;
-    case "Decrement": count--;
-      break;
+    case HOME_PAGE_LOADED:
+		return {
+			...state,
+			events : action.payload.events,
+			homePageLoaded : true
+		};
+    case HOME_PAGE_UNLOADED: 
+    	return {};
+	default:
+		return state;
   }
   return count;
 }
