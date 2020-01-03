@@ -67,7 +67,24 @@ const styles = StyleSheet.create ({
 		alignItems : 'center',
 		padding : 10,
 		backgroundColor : primary_color
-   	}
+   	},
+   	modal_container : {
+	    justifyContent: 'space-between',
+	    alignItems: 'center',
+	    marginTop : 300,
+	    marginBottom : 300,
+	    height : 200,
+ 		flex : 1,
+ 		padding : 20, 
+ 		backgroundColor : '#ffffff',
+ 		borderRadius : 6
+ 	},
+	modal_header : {
+ 		fontSize : 16,
+ 		alignItems : 'center',
+ 		padding : 20,
+ 		marginBottom : 40
+ 	},
 })
 
 export default styles;

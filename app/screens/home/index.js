@@ -43,9 +43,9 @@ class HomeScreen extends React.Component {
 
 		this.state = {
 			isModalVisible: false,
-			date: "2019-12-30",
+			date: '',
 			category : '',
-			location : ''
+			venue : ''
 		}
 
 		this.toggleModal = () =>  {
@@ -56,16 +56,14 @@ class HomeScreen extends React.Component {
 	    	this.setState({ category : item });
 	    }
 
-	    this.onChangeLocation = (item) => {
-	    	this.setState({ location : item });
+	    this.onChangeVenue = (item) => {
+	    	this.setState({ venue : item });
 	    }
 
 		this.handleFilter = () => {
-			var params = {
-				date : this.state.date,
-				category : this.state.category,
-				location : this.state.location
-			}
+			var params = 'date='+this.state.date;
+			params += '&category='+this.state.category;
+			params += '&venue='+this.state.venue;
 			this.props.onFilter(apis.Events.filter(params));
 			this.setState({ isModalVisible: !this.state.isModalVisible });
 		}
@@ -97,10 +95,10 @@ class HomeScreen extends React.Component {
             { label: 'Petsy', value: 'petsy' }
         ];
 
-        var locations = [];
+        var venues = [];
 
         this.props.venues && this.props.venues.map(venue => {
-        	locations.push({
+        	venues.push({
         		label : venue.name,
         		value : venue.id
         	})
@@ -164,10 +162,10 @@ class HomeScreen extends React.Component {
 				        <DatePicker
 					        date={this.state.date}
 					        mode="date"
-					        placeholder="Select date"
+					        placeholder="Select a date"
 					        format="YYYY-MM-DD"
-					        minDate="2016-05-01"
-					        maxDate="2016-06-01"
+					        minDate="2000-01-01"
+					        maxDate="2100-01-01"
 					        confirmBtnText="Confirm"
 					        cancelBtnText="Cancel"
 					        customStyles={{
@@ -178,17 +176,19 @@ class HomeScreen extends React.Component {
 					            marginLeft: 0
 					          },
 					          dateInput: {
+					            left : 0,
+					          	position : 'absolute',
 					            marginLeft: 36,
-					            fontSize : 18
+					            borderWidth : 0
 					          }
 					        }}
 					        onDateChange={(date) => {this.setState({date: date})}}
 					      />
-					    <Text style={ styles.label }>Location</Text>
+					    <Text style={ styles.label }>Venue</Text>
 						<RNPickerSelect
-				            onValueChange={this.onChangeLocation}
-				            placeholder={{ label : "Select a location" }}
-				            items={locations}
+				            onValueChange={this.onChangeVenue}
+				            placeholder={{ label : "Select a venue" }}
+				            items={venues}
 				            style={ styles.select }
 				        />
 					</View>

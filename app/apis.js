@@ -65,7 +65,7 @@ const Events = {
   all: page =>
     requests.get(`/events?${limit(10, page)}`),
   filter: (params) => 
-    requests.post(/eventsFilter/, {params}),
+    requests.get(`/events?${params}`),
   del: slug =>
     requests.del(`/events/${slug}`),
   favorite: slug =>
