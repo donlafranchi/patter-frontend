@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, ScrollView, Image, Button,
 	ActivityIndicator } from 'react-native';
-// import { Button } from 'native-base';
+import { Icon } from 'native-base';
 
 import styles from './styles';
 import { g_styles } from '../../../styleConsts';
@@ -44,41 +44,46 @@ class Profile extends React.Component {
 					'description': 'In addition to top Vancouver sights such as Stanley Park and Robson Street, this Vancouver sightseeing tour includes a trip to the Capilano Suspension Bridge', 
 					'url' : 'https://media-cdn.tripadvisor.com/media/photo-s/1a/57/a1/91/caption.jpg'
 				}
-	      ]
+		]
 
 		return (
-			<View>
-                <ScrollView style={ styles.container }>
-                	<View style = { styles.profile_detail }>
-		                <Image
-		             		source = {{uri: profile.url}} 
-		             		style = {styles.image} />
-		                <Text style={ styles.name }>{profile.name}</Text>
-		                <Text style={ styles.desc }>{profile.description}</Text>
-	                </View>
-                	{
-	                profile.events.map((event, index) => (
-	                  	<TouchableOpacity key = {event.id} style = {styles.item} 
-	                     	onPress={() => { navigation.navigate('detail');}} >
-	                     	<Image
-			             		source = {{uri: event.url}} 
-			             		style = {styles.item_img } />
-			             	<View style={ styles.context }>
-		                        <Text>{event.name}</Text>
-		                        <Text>{event.description}</Text>
-	                        </View>
-	                     </TouchableOpacity>
-	                  ))
-	               }
-	            </ScrollView>
-		      	<View style = {styles.btn_group}>
-		            <Button
-				        onPress = {this.handleFollow}
+			<View style={ styles.page_container }>
+				<View>
+					<Icon name="arrow-back" 
+						onPress={ () => navigation.goBack(null)}
+						style={styles.backIcon} />
+				</View>
+				<ScrollView style={ styles.container }>
+					<View style = { styles.profile_detail }>
+						<Image
+							source = {{uri: profile.url}} 
+							style = {styles.image} />
+						<Text style={ styles.name }>{profile.name}</Text>
+						<Text style={ styles.desc }>{profile.description}</Text>
+					</View>
+					{
+						profile.events.map((event, index) => (
+							<TouchableOpacity key = {event.id} style = {styles.item} 
+								onPress={() => { navigation.navigate('detail');}} >
+								<Image
+									source = {{uri: event.url}} 
+									style = {styles.item_img } />
+								<View style={ styles.context }>
+									<Text>{event.name}</Text>
+									<Text>{event.description}</Text>
+								</View>
+							 </TouchableOpacity>
+						))
+					}
+				</ScrollView>
+				<View style = {styles.btn_group}>
+					<Button
+						onPress = {this.handleFollow}
 						title = "Follow Person"
-				        color = "#ffffff"
-			      	/>
-		      	</View>
-	         </View>
+						color = "#ffffff"
+					/>
+				</View>
+			</View>
 		)
 	}
 }

@@ -3,9 +3,14 @@ import { StyleSheet } from 'react-native';
 import { primary_color, gray_color, g_padding } from '../../../styleConsts';
 
 const styles = StyleSheet.create ({
+	page_container : {
+		flexDirection : 'column',
+		justifyContent : 'space-between',
+		height : '100%'
+	},
 	container : {
-		height : '93%',
-		padding : 30
+		paddingLeft : 10,
+		paddingRight : 10
 	},
 	e_item : {
 		margin : 10,
@@ -71,8 +76,8 @@ const styles = StyleSheet.create ({
    	modal_container : {
 	    justifyContent: 'space-between',
 	    alignItems: 'center',
-	    marginTop : 300,
-	    marginBottom : 300,
+	    marginTop : 250,
+	    marginBottom : 250,
 	    height : 200,
  		flex : 1,
  		padding : 20, 
@@ -85,6 +90,10 @@ const styles = StyleSheet.create ({
  		padding : 20,
  		marginBottom : 40
  	},
+ 	backIcon : {
+ 		margin : 20,
+ 		width : 20
+ 	}
 })
 
 export default styles;

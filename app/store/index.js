@@ -12,15 +12,14 @@ import reducer from './reducer';
 // const myRouterMiddleware = routerMiddleware(history);
 
 const getMiddleware = () => {
-  if (process.env.NODE_ENV === 'production') {
-    return applyMiddleware(promiseMiddleware, localStorageMiddleware);
-  } else {
-    // Enable additional logging in non-production environments.
-    return applyMiddleware(promiseMiddleware, localStorageMiddleware, createLogger())
-  }
+	if (process.env.NODE_ENV === 'production') {
+		return applyMiddleware(promiseMiddleware, localStorageMiddleware);
+	} else {
+		// Enable additional logging in non-production environments.
+		return applyMiddleware(promiseMiddleware, localStorageMiddleware, createLogger())
+	}
 };
 
-export const store = createStore(
-  reducer, composeWithDevTools(getMiddleware()));
+export const store = createStore(reducer, composeWithDevTools(getMiddleware()));
 
 // export const store = createStore(reducer);

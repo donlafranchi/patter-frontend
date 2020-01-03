@@ -3,10 +3,12 @@ import { StyleSheet } from 'react-native';
 import { primary_color, gray_color, g_padding, height, width } from '../../../styleConsts';
 
 const styles = StyleSheet.create ({
-	event_list : {
-		height : '93%'
+	page_container : {
+		flexDirection : 'column',
+		justifyContent : 'space-between',
+		height : '100%'
 	},
- 	event: {
+  	event: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
@@ -14,26 +16,26 @@ const styles = StyleSheet.create ({
 		margin: 3,
 		borderColor: '#2a4944',
 		borderWidth: 0,
-    borderBottomWidth : 1,
+		borderBottomWidth : 1,
 		// backgroundColor: '#d2f7f1'
 	},
- 	event_name : {
- 		color: '#2a4944',
+  	event_name : {
+  		color: '#2a4944',
 		alignSelf: 'flex-start',
 		fontSize : 16,
 		padding : 15
 	},
- 	event_desc : {
- 		color: '#2a4944',
+	event_desc : {
+		color: '#2a4944',
 		alignSelf: 'flex-start',
 		fontSize : 14,
 		padding : 15
- 	},
- 	image : {
+	},
+	image : {
 		width : '100%',
 		height : 150
- 	},
- 	btn_group : {
+	},
+	btn_group : {
 		flexDirection : 'row',
 		justifyContent : 'space-between',
 		alignItems : 'center',
@@ -41,11 +43,11 @@ const styles = StyleSheet.create ({
 		backgroundColor : primary_color
  	},
  	modal_container : {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop : 100,
-    marginBottom : 100,
-    height : 200,
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		marginTop : 100,
+		marginBottom : 100,
+		height : 200,
  		flex : 1,
  		padding : 20, 
  		backgroundColor : '#ffffff',
@@ -66,7 +68,7 @@ const styles = StyleSheet.create ({
  	label : {
  		marginBottom : 10,
  		marginTop : 20,
-    fontSize : 16,
+	fontSize : 16,
  		fontWeight : '500'
  	}
 })
