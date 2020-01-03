@@ -3,7 +3,7 @@ import {
 	PROFILE_PAGE_UNLOADED
 } from '../actionTypes.js';
 
-export default function(state={}, action){
+export default (state={}, action) => {
   switch (action.type) {
     case PROFILE_PAGE_LOADED:
     	return {
@@ -16,5 +16,4 @@ export default function(state={}, action){
 	default:
 		return state;
   }
-  return count;
 }

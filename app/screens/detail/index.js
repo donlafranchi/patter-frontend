@@ -21,49 +21,47 @@ class Detail extends React.Component {
 
 	render() {
 
-		var navigate = this.props.navigation.navigate;
+		var navigation = this.props.navigation;
 
-		var event = {
-			'id': '1', 
-			'name': 'Quebec City Walking Tour', 
-			'desc': 'Explore Niagara Falls your way on a stress-free day trip from Toronto, which also includes wine tasting at a local winery. Explore the falls at your own pace during roughly three hours of free time', 
-			'image' : 'https://media-cdn.tripadvisor.com/media/photo-s/1a/65/1e/80/caption.jpg',
-			'vendors' : [
+		var event = navigation.getParam('event') || [];
+
+		event.vendors = [
 				{
 					'id' : '1',
-					'fullname' : 'David Green',
-					'desc' : 'I am looking for good events everyday',
-					'image' : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUsGHRGXsU-6or1SNOW4gaLcnem87x-zWO77XcmnCzFZEBhQo8&s'
+					'name' : 'David Green',
+					'description' : 'I am looking for good events everyday',
+					'url' : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUsGHRGXsU-6or1SNOW4gaLcnem87x-zWO77XcmnCzFZEBhQo8&s'
 				},
 				{
 					'id' : '2',
-					'fullname' : 'Sabeli Joe',
-					'desc' : 'Quality Assurance',
-					'image' : 'https://image.flaticon.com/icons/png/512/206/206881.png'
+					'name' : 'Sabeli Joe',
+					'description' : 'Quality Assurance',
+					'url' : 'https://image.flaticon.com/icons/png/512/206/206881.png'
 				}
 			]
-		}
 
 		return (
 			<View>
                 <ScrollView style={ styles.container }>
 	                <View style = { styles.event_detail } >
 		                <Image
-		             		source = {{ uri: event.image }} 
+		             		source = {{ uri: event.url }} 
 		             		style = {styles.image} />
 		                <Text style={ styles.name }>{event.name}</Text>
-		                <Text style={ styles.desc }>{event.desc}</Text>
+		                <Text style={ styles.desc }>{event.description}</Text>
 	                </View>
-                	{
-	                  event.vendors.map((vendor, index) => (
+                	{	
+	                  event.vendors && event.vendors.map((vendor, index) => (
 	                  	<TouchableOpacity key = {vendor.id} style = {styles.item}
-		                     	onPress={() => { navigate('profile');}}>
+		                     	onPress={() => { navigation.navigate('profile', 
+		                     	{vendor : vendor})
+	                     	}}>
 							<Image
-			             		source = {{ uri: vendor.image }} 
+			             		source = {{ uri: vendor.url }} 
 			             		style = {styles.item_img} />
 		             		<View>
-								<Text>{vendor.fullname}</Text>
-								<Text>{vendor.desc}</Text>
+								<Text>{vendor.name}</Text>
+								<Text>{vendor.description}</Text>
 							</View>
                      	</TouchableOpacity>
 	                  ))

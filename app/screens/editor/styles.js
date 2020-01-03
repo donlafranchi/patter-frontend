@@ -4,15 +4,30 @@ import { primary_color, gray_color, g_padding } from '../../../styleConsts';
 
 const styles = StyleSheet.create ({
 	container : {
-		height : '90%'
+		height : '93%',
+		padding : 30
 	},
-    event_detail: {
-    	alignItems: 'center',
-    	padding: 0,
-    	marginBottom: 20,
-    	// borderColor: '#2a4944',
-		// borderWidth: 1
-    },
+	e_item : {
+		margin : 10,
+		padding : 5,
+		// borderBottomWidth : 1,
+		// borderColor : '#2a4944'
+	},
+	e_label : {
+   		fontSize : 16,
+   		marginBottom : 10,
+   		fontWeight : '500'
+   	},
+   	e_input : {
+   		fontSize : 14,
+   		borderColor: 'gray', 
+   		borderWidth: 0,
+   	},
+   	select : {
+ 		fontSize : 16,
+ 		margin : 20,
+ 		alignItems : 'center'
+ 	},
     name : {
    		// color: '#2a4944',
 		alignSelf: 'flex-start',

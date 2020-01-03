@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux';
-import Home from './reducers/home';
-import Detail from './reducers/detail';
-import Editor from './reducers/editor';
-import Profile from './reducers/profile';
+import home from './reducers/home';
+import detail from './reducers/detail';
+import editor from './reducers/editor';
+import profile from './reducers/profile';
 
 export default combineReducers({
-	Home,
-	Detail,
-	Editor,
-	Profile
+	home,
+	detail,
+	editor,
+	profile
 })

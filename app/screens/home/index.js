@@ -8,7 +8,33 @@ import { g_styles } from '../../../styleConsts';
 import Modal from "react-native-modal";
 import RNPickerSelect from 'react-native-picker-select';
 import DatePicker from 'react-native-datepicker';
+import { connect } from "react-redux";
+import {
+	HOME_PAGE_LOADED,
+	HOME_PAGE_UNLOADED,
+	HOME_PAGE_FILTER,
+	UPDATE_FIELD
+} from '../../store/actionTypes';
+import apis from '../../apis';
 
+
+const mapStateProps = state => ({
+	...state.home,
+	homePageLoaded : state.home.homePageLoaded,
+	events : state.home.events,
+	venues : state.home.venues
+})
+
+const mapDispatchToProps = dispatch => ({
+	onLoad: (payload) => 
+		dispatch({type : HOME_PAGE_LOADED, payload}),
+	onFilter: (payload) => 
+		dispatch({type : HOME_PAGE_FILTER, payload}),
+	onUnload: (payload) => 
+		dispatch({type : HOME_PAGE_UNLOADED }),
+	onUpdateField : (key, value) => 
+		dispatch({type : UPDATE_FIELD, key, value})
+})
 
 class HomeScreen extends React.Component {
 
@@ -17,21 +43,31 @@ class HomeScreen extends React.Component {
 
 		this.state = {
 			isModalVisible: false,
-			date: "2019-12-30"
+			date: "2019-12-30",
+			category : '',
+			location : ''
 		}
 
-		this.toggleModal = () => {
-		    this.setState({ isModalVisible: !this.state.isModalVisible });
-	  	};
+		this.toggleModal = () =>  {
+			this.setState({ isModalVisible: !this.state.isModalVisible });
+		}
 
-	    this._onChange = (item) => {
-	        // the full item as defined in the list of items is passed to the onChange handler to give full
-	        // flexibility on what to do... 
+	    this.onChangeCategory = (item) => {
+	    	this.setState({ category : item });
+	    }
+
+	    this.onChangeLocation = (item) => {
+	    	this.setState({ location : item });
 	    }
 
 		this.handleFilter = () => {
-			// filter action here
-
+			var params = {
+				date : this.state.date,
+				category : this.state.category,
+				location : this.state.location
+			}
+			this.props.onFilter(apis.Events.filter(params));
+			this.setState({ isModalVisible: !this.state.isModalVisible });
 		}
 
 		this.handleMyEvents = () => {
@@ -43,7 +79,8 @@ class HomeScreen extends React.Component {
 		}
 	}
 
-	componentDidUpdate() {
+	componentDidMount() {
+		this.props.onLoad(Promise.all([apis.Events.all(), apis.Venue.all()]));
 	}
 
 	render() {
@@ -51,37 +88,25 @@ class HomeScreen extends React.Component {
 		var navigate = this.props.navigation.navigate;
 
 		const items = [
-            { label: 'Sports', value:'sports' },
-            { label: 'Health', value: 'health' },
-            { label: 'Culture', value: 'culture' }
+            { label: 'Artsy', value:'artsy' },
+            { label: 'Boozey', value: 'boozey' },
+            { label: 'Charity', value: 'charty' },
+            { label: 'Craftsy', value: 'craftsy' },
+            { label: 'Foody', value: 'foody' },
+            { label: 'Musicy', value: 'musicy' },
+            { label: 'Petsy', value: 'petsy' }
         ];
 
-        const locations = [
-        	{ label : 'Toronto', value : 'toronto' },
-        	{ label : 'Vancouver', value : 'vancouver' },
-        	{ label : 'Montreal', value : 'montreal' }
-    	];
+        var locations = [];
 
-		var events = [
-				{
-					'id': '1', 
-					'name': 'Quebec City Walking Tour', 
-					'desc': 'Explore Niagara Falls your way on a stress-free day trip from Toronto, which also includes wine tasting at a local winery. Explore the falls at your own pace during roughly three hours of free time', 
-					'image' : 'https://media-cdn.tripadvisor.com/media/photo-s/1a/65/1e/80/caption.jpg'
-				},
-				{
-					'id': '2', 
-					'name': 'Niagara Falls, Canada: Voyage to the Falls Boat Tour in Canada', 
-					'desc': 'Get up close to Niagara Falls on this boat tour that cruises from the Canadian side of the border. Feel the power of the massive waterfalls as you motor past American Falls, Bridal Veil Falls', 
-					'image' : 'https://media-cdn.tripadvisor.com/media/photo-s/1a/54/3d/3e/caption.jpg'
-				},
-				{	
-					'id': '3', 
-					'name': 'Vancouver City Tour Including Capilano Suspension Bridge', 
-					'desc': 'In addition to top Vancouver sights such as Stanley Park and Robson Street, this Vancouver sightseeing tour includes a trip to the Capilano Suspension Bridge', 
-					'image' : 'https://media-cdn.tripadvisor.com/media/photo-s/1a/57/a1/91/caption.jpg'
-				}
-	      ];
+        this.props.venues && this.props.venues.map(venue => {
+        	locations.push({
+        		label : venue.name,
+        		value : venue.id
+        	})
+        })
+
+		var events = this.props.events || [];
 
 		return (
 			<View>
@@ -89,13 +114,19 @@ class HomeScreen extends React.Component {
 	               {
 	                  events.map((event, index) => (
 	                     <TouchableOpacity key = {event.id} style = {styles.event} 
-	                     	onPress={() => { navigate('detail');}} >
+	                     	onPress={() => 
+	                     		{ 
+	                     			navigate(
+	                     				'detail', {	event: event }
+                 					)
+	                     		}
+	                     	} >
 	                     	<View>
 		                     	<Image
-		                     		source = {{ uri: event.image }} 
+		                     		source = {{ uri: event.url }} 
 		                     		style = {styles.image} />
 		                        <Text style={ styles.event_name }>{event.name}</Text>
-		                        <Text style={ styles.event_desc }>{event.desc}</Text>
+		                        <Text style={ styles.event_desc }>{event.description}</Text>
 	                        </View>
 	                     </TouchableOpacity>
 	                  ))
@@ -108,7 +139,7 @@ class HomeScreen extends React.Component {
 						color = "#ffffff"
 			      	/>
 			      	<Button
-						onPress={() => { navigate('profile');}}
+						onPress={() => { navigate('home'); } }
 						title = "My Events"
 						color = "#ffffff"
 			      	/>
@@ -124,17 +155,16 @@ class HomeScreen extends React.Component {
 						<Text style={ styles.modal_header }>Filter Events</Text>
 						<Text style={ styles.label }>Category</Text>
 						<RNPickerSelect
-				            onValueChange={this._onChange}
+				            onValueChange={this.onChangeCategory}
 				            placeholder={{ label : "Select a category" }}
 				            items={items}
 				            style={ styles.select }
 				        />
 				        <Text style={ styles.label }>Date</Text>
 				        <DatePicker
-					        style={styles.dataPicker}
 					        date={this.state.date}
 					        mode="date"
-					        placeholder="select date"
+					        placeholder="Select date"
 					        format="YYYY-MM-DD"
 					        minDate="2016-05-01"
 					        maxDate="2016-06-01"
@@ -148,24 +178,25 @@ class HomeScreen extends React.Component {
 					            marginLeft: 0
 					          },
 					          dateInput: {
-					            marginLeft: 36
+					            marginLeft: 36,
+					            fontSize : 18
 					          }
 					        }}
 					        onDateChange={(date) => {this.setState({date: date})}}
 					      />
 					    <Text style={ styles.label }>Location</Text>
 						<RNPickerSelect
-				            onValueChange={this._onChange}
+				            onValueChange={this.onChangeLocation}
 				            placeholder={{ label : "Select a location" }}
 				            items={locations}
 				            style={ styles.select }
 				        />
 					</View>
-					<Button title="Apply" onPress={this.toggleModal} />
+					<Button title="Apply" onPress={this.handleFilter} />
 		        </Modal>
 	         </View>
 		)
 	}
 }
 
-export default HomeScreen;
+export default connect(mapStateProps, mapDispatchToProps)(HomeScreen);

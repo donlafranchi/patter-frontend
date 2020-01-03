@@ -16,6 +16,8 @@ class SideBar extends React.Component {
 	render() {
 		const { Resource, navigate } = this.props;
 
+		// var navigation = this.props.navigation;
+
 		let static_menus = ['info', 'faq', 'about'];
 		// let menu_items = Resource.menu || {}, menu = [];
 		// for(let key in menu_items) {
@@ -47,12 +49,7 @@ class SideBar extends React.Component {
 									<ListItem style={styles.listitem} key={menu_item.key} >
 										<TouchableOpacity style={styles.listitem_button}
 												onPress={() => {
-													if(static_menus.indexOf(menu_item.key) !== -1)
-														navigate('static', {
-															key: menu_item.key
-														})
-													else 
-														navigate(menu_item.key);
+													navigate(menu_item.key);
 													this.props.menuPress();
 												}} >
 											<Text style={styles.listitem_text} >

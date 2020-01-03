@@ -4,7 +4,7 @@ import { primary_color, gray_color, g_padding } from '../../../styleConsts';
 
 const styles = StyleSheet.create ({
 	container : {
-		height : '90%'
+		height : '93%'
 	},
     profile_detail : {
     	alignItems: 'center',
