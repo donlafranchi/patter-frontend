@@ -46,7 +46,7 @@ class Profile extends React.Component {
 				}
 		]
 
-		return (
+		return (	
 			<View style={ styles.page_container }>
 				<View>
 					<Icon name="arrow-back" 

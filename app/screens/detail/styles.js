@@ -25,8 +25,8 @@ const styles = StyleSheet.create ({
 		padding : 20
 	},
 	image : {
-		width : 370,
-		height : 200
+		width : '100%',
+		height : 220
 	},
 	item: {
 		flexDirection: 'row',
@@ -35,7 +35,8 @@ const styles = StyleSheet.create ({
 		padding: 20,
 		margin: 2,
 		borderColor: '#2a4944',
-		borderWidth: 1,
+		// borderWidth: 1,
+		borderTopWidth : 1
 		// backgroundColor: '#d2f7f1'
 	},
 	item_img : {

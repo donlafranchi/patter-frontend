@@ -13,7 +13,7 @@ const styles = StyleSheet.create ({
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		// padding: 10,
-		margin: 3,
+		// margin: 3,
 		borderColor: '#2a4944',
 		borderWidth: 0,
 		borderBottomWidth : 1,
@@ -33,7 +33,7 @@ const styles = StyleSheet.create ({
 	},
 	image : {
 		width : '100%',
-		height : 150
+		height : 220
 	},
 	btn_group : {
 		flexDirection : 'row',
@@ -41,6 +41,12 @@ const styles = StyleSheet.create ({
 		alignItems : 'center',
 		padding : 10,
 		backgroundColor : primary_color
+ 	},
+ 	btn_group_modal : {
+		flexDirection : 'row',
+		justifyContent : 'space-around',
+		alignItems : 'center',
+		padding : 10
  	},
  	modal_container : {
 		justifyContent: 'space-between',

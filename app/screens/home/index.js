@@ -22,7 +22,8 @@ const mapStateProps = state => ({
 	...state.home,
 	homePageLoaded : state.home.homePageLoaded,
 	events : state.home.events,
-	venues : state.home.venues
+	venues : state.home.venues,
+	baseUrl : state.home.baseUrl
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -60,10 +61,18 @@ class HomeScreen extends React.Component {
 			this.setState({ venue : item });
 		}
 
+		this.onClear = () => {
+			this.setState({
+				date: '',
+				category : '',
+				venue : ''
+			})
+		}
+
 		this.handleFilter = () => {
-			var params = 'date='+this.state.date;
-			params += '&category='+this.state.category;
-			params += '&venue='+this.state.venue;
+			var params = 'date='+(this.state.date || '');
+			params += '&category='+(this.state.category || '');
+			params += '&venue='+ ( this.state.venue || '');
 			this.props.onFilter(apis.Events.filter(params));
 			this.setState({ isModalVisible: !this.state.isModalVisible });
 		}
@@ -79,6 +88,13 @@ class HomeScreen extends React.Component {
 
 	componentDidMount() {
 		this.props.onLoad(Promise.all([apis.Events.all(), apis.Venue.all()]));
+	}
+
+	componentWillMount() {
+		this.props.onLoad(Promise.all([apis.Events.all(), apis.Venue.all()]));
+	}
+
+	componentWillReceiveProps(nextProps) {
 	}
 
 	render() {
@@ -106,29 +122,39 @@ class HomeScreen extends React.Component {
 
 		var events = this.props.events || [];
 
+		var stms = this.state.date !== '' || this.state.category !== '' || this.state.venue;
+
 		return (
 			<View style={styles.page_container}>
 				<ScrollView style={ styles.event_list }>
 				{
-					events.map((event, index) => (
-						<TouchableOpacity key = {event.id} style = {styles.event} 
-							onPress={() => 
-								{ 
-									navigate(
-										'detail', {	event: event }
-									)
-								}
-							} >
-							<View>
-								<Image
-									source = {{ uri: event.url }} 
-									style = {styles.image} />
-								<Text style={ styles.event_name }>{event.name}</Text>
-								<Text style={ styles.event_desc }>{event.description}</Text>
+					events.length === 0?
+						stms? <View>
+								<Text style={ styles.event_name }>There is no events.</Text>
 							</View>
-						</TouchableOpacity>
-					))
+						:
+							<Text></Text>
+					:
+						events.map((event, index) => (
+							<TouchableOpacity key = {event.id} style = {styles.event} 
+								onPress={() => 
+									{ 
+										navigate(
+											'detail', {	event: event }
+										)
+									}
+								} >
+								<View>
+									<Image
+										source = {{ uri: this.props.baseUrl + (event.background || '') }} 
+										style = {styles.image} />
+									<Text style={ styles.event_name }>{event.name}</Text>
+									<Text style={ styles.event_desc }>{event.description}</Text>
+								</View>
+							</TouchableOpacity>
+						))
 				}
+
 				</ScrollView>
 				<View style = {styles.btn_group}>
 					<Button
@@ -156,6 +182,7 @@ class HomeScreen extends React.Component {
 							onValueChange={this.onChangeCategory}
 							placeholder={{ label : "Select a category" }}
 							items={items}
+							value={ this.state.category }
 							style={ styles.select }
 						/>
 						<Text style={ styles.label }>Date</Text>
@@ -189,14 +216,18 @@ class HomeScreen extends React.Component {
 							onValueChange={this.onChangeVenue}
 							placeholder={{ label : "Select a venue" }}
 							items={venues}
+							value={ this.state.venue}
 							style={ styles.select }
 						/>
 					</View>
-					<Button title="Apply" onPress={this.handleFilter} />
+					<View style={styles.btn_group_modal}>
+						<Button title="Clear" onPress={ () => this.onClear() } color="#2a4944" />
+						<Button title="Apply" onPress={this.handleFilter} />
+					</View>
 				</Modal>
 			</View>
 		)
 	}
 }
 
-export default connect(mapStateProps, mapDispatchToProps)(HomeScreen);
+export default connect(mapStateProps, mapDispatchToProps)(HomeScreen);	

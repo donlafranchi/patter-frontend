@@ -2,9 +2,19 @@ import React from 'react';
 import { View, TouchableOpacity, Text, ScrollView, Image, Button, 
 	ActivityIndicator } from 'react-native';
 import { Icon } from 'native-base';
-
+import { connect } from "react-redux";
 import styles from './styles';
 import { g_styles } from '../../../styleConsts';
+
+
+const mapStateProps = state => ({
+	...state.home,
+	baseUrl : state.home.baseUrl
+})
+
+const mapDispatchToProps = dispatch => ({
+})
+
 
 class Detail extends React.Component {
 
@@ -29,13 +39,25 @@ class Detail extends React.Component {
 				{
 					'id' : '1',
 					'name' : 'David Green',
-					'description' : 'I am looking for good events everyday',
+					'description' : 'I am looking for good events everyday.',
 					'url' : 'https://image.flaticon.com/icons/png/512/145/145848.png'
 				},
 				{
 					'id' : '2',
-					'name' : 'Sabeli Joe',
-					'description' : 'Quality Assurance',
+					'name' : 'Sandra Hanna',
+					'description' : 'The views are great and wonderful.',
+					'url' : 'https://image.flaticon.com/icons/png/512/206/206881.png'
+				},
+				{
+					'id' : '1',
+					'name' : 'Jonathan Stevens',
+					'description' : 'Our tour guide for the hard times tour.',
+					'url' : 'https://image.flaticon.com/icons/png/512/145/145848.png'
+				},
+				{
+					'id' : '2',
+					'name' : 'Marry Gonzales',
+					'description' : 'Accessible by ferry with great views.',
 					'url' : 'https://image.flaticon.com/icons/png/512/206/206881.png'
 				}
 			]
@@ -50,7 +72,7 @@ class Detail extends React.Component {
 				<ScrollView style={ styles.container }>
 					<View style = { styles.event_detail } >
 						<Image
-							source = {{ uri: event.url }} 
+							source = {{ uri: this.props.baseUrl + (event.background || '') }} 
 							style = {styles.image} />
 						<Text style={ styles.name }>{event.name}</Text>
 						<Text style={ styles.desc }>{event.description}</Text>
@@ -84,4 +106,5 @@ class Detail extends React.Component {
 	}
 }
 
-export default Detail;
+export default connect(mapStateProps, mapDispatchToProps)(Detail);
+

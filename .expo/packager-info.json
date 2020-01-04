@@ -3,8 +3,8 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://92-fs3.dkhdeveloper.patter.exp.direct",
+  "packagerNgrokUrl": "https://packager.92-fs3.dkhdeveloper.patter.exp.direct",
+  "ngrokPid": 41494,
   "webpackServerPort": null
 }
