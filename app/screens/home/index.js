@@ -78,7 +78,12 @@ class HomeScreen extends React.Component {
 		}
 
 		this.handleMyEvents = () => {
-			// my events action here
+			this.setState({
+				date: '',
+				category : '',
+				venue : ''
+			})
+			this.props.onLoad(Promise.all([apis.Events.all(), apis.Venue.all()]));
 		}
 
 		this.handleAddEvent = () => {
@@ -136,7 +141,7 @@ class HomeScreen extends React.Component {
 							<Text></Text>
 					:
 						events.map((event, index) => (
-							<TouchableOpacity key = {event.id} style = {styles.event} 
+							<TouchableOpacity key = {event.id}
 								onPress={() => 
 									{ 
 										navigate(
@@ -144,7 +149,7 @@ class HomeScreen extends React.Component {
 										)
 									}
 								} >
-								<View>
+								<View style = {styles.event} >
 									<Image
 										source = {{ uri: this.props.baseUrl + (event.background || '') }} 
 										style = {styles.image} />
@@ -163,7 +168,7 @@ class HomeScreen extends React.Component {
 						color = "#ffffff"
 					/>
 					<Button
-						onPress={() => { navigate('home'); } }
+						onPress={() => this.handleMyEvents() }
 						title = "My Events"
 						color = "#ffffff"
 					/>
@@ -175,7 +180,7 @@ class HomeScreen extends React.Component {
 				</View>
 				<Modal isVisible={this.state.isModalVisible}
 					style = { styles.modal_container }>
-					<View >
+					<View style={ styles.modal_content }>
 						<Text style={ styles.modal_header }>Filter Events</Text>
 						<Text style={ styles.label }>Category</Text>
 						<RNPickerSelect

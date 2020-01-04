@@ -252,9 +252,12 @@ class Editor extends React.Component {
 				<Modal isVisible={this.state.isModalVisible}
 					style = { styles.modal_container }>
 					<View >
-						<Text style={ styles.modal_header }>Please fill all the required fields</Text>
+						<Text style={ styles.modal_header }>Alert</Text>
 					</View>
-					<Button title="Ok" onPress={this.toggleModal} />
+					<View >
+						<Text style={ styles.modal_body }>Please fill all the required fields.</Text>
+					</View>
+					<Button title="OK" onPress={this.toggleModal} />
 				</Modal>
 			 </View>
 		)

@@ -9,7 +9,7 @@ const styles = StyleSheet.create ({
 		height : '100%'
 	},
   	event: {
-		flexDirection: 'row',
+		flexDirection: 'column',
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		// padding: 10,
@@ -45,8 +45,9 @@ const styles = StyleSheet.create ({
  	btn_group_modal : {
 		flexDirection : 'row',
 		justifyContent : 'space-around',
-		alignItems : 'center',
-		padding : 10
+		// alignItems : 'center',
+		padding : 10,
+		minWidth : 200
  	},
  	modal_container : {
 		justifyContent: 'space-between',
@@ -65,6 +66,9 @@ const styles = StyleSheet.create ({
  		padding : 20,
  		marginBottom : 40,
  		fontWeight : 'bold'
+ 	},
+ 	modal_content : {
+ 		minWidth : 180
  	},
  	select : {
  		fontSize : 18,

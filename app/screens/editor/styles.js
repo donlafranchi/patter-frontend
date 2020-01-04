@@ -84,11 +84,18 @@ const styles = StyleSheet.create ({
  		backgroundColor : '#ffffff',
  		borderRadius : 6
  	},
-	modal_header : {
+ 	modal_header : {
+ 		fontSize : 18,
+ 		alignItems : 'center',
+ 		padding : 10,
+ 		marginBottom : 15,
+ 		fontWeight : '500'
+ 	},
+	modal_body : {
  		fontSize : 16,
  		alignItems : 'center',
- 		padding : 20,
- 		marginBottom : 40
+ 		padding : 10,
+ 		marginBottom : 30
  	},
  	backIcon : {
  		margin : 20,
